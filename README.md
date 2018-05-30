@@ -1,8 +1,6 @@
 # Oracle
 
-# Barebones example
-
-# Setting up
+## Setting up
 ```
 npm install -g truffle ethereumjs-testrpc
 npm install
@@ -10,12 +8,12 @@ testrpc &
 truffle compile && truffle migrate
 ```
 
-# Running your Oracle
+## Running your Oracle
 ```
 node oracle.js
 ```
 
-# Running your client
+## Running your client
 ```
 node client.js
 ```
