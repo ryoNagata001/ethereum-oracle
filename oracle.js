@@ -26,9 +26,11 @@ web3.eth.getAccounts((err, accounts) => {
     // SmartContractで指定の関数をWatch 
     oracleInstance.CallbackGetBTCCap()
     .watch((err, event) => {
+      console.log("\n**********************************\n")
+      console.log("要求元Address: " + event.args.from)
       // データをfetchして、smart contract内の変数をupdate
       fetch.fetchUrl('https://api.coinmarketcap.com/v1/global/', (err, m, b) => {
-        console.log(b.toString())
+        console.log("外部APIからの取得データ\n" + b.toString())
         const cmcJson = JSON.parse(b.toString())
         const btcMarketCap = parseInt(cmcJson.total_market_cap_usd)
 

@@ -8,7 +8,7 @@ contract CMCOracle {
     uint public btcMarketCap;
 
     // コールバック関数
-    event CallbackGetBTCCap();
+    event CallbackGetBTCCap(address from);
 
     function CMCOracle() public {
         owner = msg.sender;
@@ -16,7 +16,7 @@ contract CMCOracle {
 
     function updateBTCCap() public {
         // Oracleに情報の更新を依頼
-        CallbackGetBTCCap();
+        CallbackGetBTCCap(msg.sender);
     }
 
     function setBTCCap(uint cap) public {

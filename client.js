@@ -24,14 +24,14 @@ web3.eth.getAccounts((err, accounts) => {
   .then((oracleInstance) => {
     // プロミス
     const oraclePromises = [
-      oracleInstance.getBTCCap(),  // 現在のBTCの時価総額を取得
-      oracleInstance.updateBTCCap({from: accounts[0]})  // Oracleに情報の更新を依頼
+      oracleInstance.updateBTCCap({from: accounts[0]}),  // Oracleに情報の更新を依頼
+      oracleInstance.getBTCCap()  // 現在のBTCの時価総額を取得
     ]
 
     // プロミスを実行
     Promise.all(oraclePromises)
     .then((result) => {
-      console.log('BTC時価総額: ' + result[0])
+      console.log('登録されているBTC時価総額: ' + result[1])
       console.log('Oracleに情報の更新を要求しています.....')
     })
     .catch((err) => {

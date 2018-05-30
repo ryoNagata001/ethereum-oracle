@@ -37,7 +37,13 @@
     },
     {
       "anonymous": false,
-      "inputs": [],
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "from",
+          "type": "address"
+        }
+      ],
       "name": "CallbackGetBTCCap",
       "type": "event"
     },
@@ -79,20 +85,20 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610257806100606000396000f30060806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631701af271461007257806321e79a6914610089578063257db2d7146100b45780638da5cb5b146100df578063f1ffa5bf14610136575b600080fd5b34801561007e57600080fd5b50610087610163565b005b34801561009557600080fd5b5061009e610191565b6040518082815260200191505060405180910390f35b3480156100c057600080fd5b506100c961019b565b6040518082815260200191505060405180910390f35b3480156100eb57600080fd5b506100f46101a1565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561014257600080fd5b50610161600480360381019080803590602001909291905050506101c6565b005b7fbc990f6ed9f9b01a5c7a8bc19e4a3c811b42c39a9407311f3101e4c4ba7f13e360405160405180910390a1565b6000600154905090565b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561022157600080fd5b80600181905550505600a165627a7a723058200b54537a937ad5d2409e58db031a48916ba695b77d5b4b51ce99a424cff8ebc30029",
-  "deployedBytecode": "0x60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631701af271461007257806321e79a6914610089578063257db2d7146100b45780638da5cb5b146100df578063f1ffa5bf14610136575b600080fd5b34801561007e57600080fd5b50610087610163565b005b34801561009557600080fd5b5061009e610191565b6040518082815260200191505060405180910390f35b3480156100c057600080fd5b506100c961019b565b6040518082815260200191505060405180910390f35b3480156100eb57600080fd5b506100f46101a1565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561014257600080fd5b50610161600480360381019080803590602001909291905050506101c6565b005b7fbc990f6ed9f9b01a5c7a8bc19e4a3c811b42c39a9407311f3101e4c4ba7f13e360405160405180910390a1565b6000600154905090565b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561022157600080fd5b80600181905550505600a165627a7a723058200b54537a937ad5d2409e58db031a48916ba695b77d5b4b51ce99a424cff8ebc30029",
-  "sourceMap": "26:663:0:-;;;217:63;8:9:-1;5:2;;;30:1;27;20:12;5:2;217:63:0;263:10;255:5;;:18;;;;;;;;;;;;;;;;;;26:663;;;;;;",
-  "deployedSourceMap": "26:663:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;286:106;;8:9:-1;5:2;;;30:1;27;20:12;5:2;286:106:0;;;;;;599:88;;8:9:-1;5:2;;;30:1;27;20:12;5:2;599:88:0;;;;;;;;;;;;;;;;;;;;;;;129:24;;8:9:-1;5:2;;;30:1;27;20:12;5:2;129:24:0;;;;;;;;;;;;;;;;;;;;;;;73:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;73:20:0;;;;;;;;;;;;;;;;;;;;;;;;;;;398:195;;8:9:-1;5:2;;;30:1;27;20:12;5:2;398:195:0;;;;;;;;;;;;;;;;;;;;;;;;;;286:106;366:19;;;;;;;;;;286:106::o;599:88::-;645:4;668:12;;661:19;;599:88;:::o;129:24::-;;;;:::o;73:20::-;;;;;;;;;;;;;:::o;398:195::-;552:5;;;;;;;;;;;538:19;;:10;:19;;;530:28;;;;;;;;583:3;568:12;:18;;;;398:195;:::o",
-  "source": "pragma solidity ^0.4.17;\n\ncontract CMCOracle {\n    // Contract owner\n    address public owner;\n\n    // BTC Marketcap Storage\n    uint public btcMarketCap;\n\n    // Callback function\n    event CallbackGetBTCCap();\n\n    function CMCOracle() public {\n        owner = msg.sender;\n    }\n\n    function updateBTCCap() public {\n        // Calls the callback function\n        CallbackGetBTCCap();\n    }\n\n    function setBTCCap(uint cap) public {\n        // If it isn't sent by a trusted oracle\n        // a.k.a ourselves, ignore it\n        require(msg.sender == owner);\n        btcMarketCap = cap;\n    }\n\n    function getBTCCap() constant public returns (uint) {\n        return btcMarketCap;\n    }\n}",
+  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555061028e806100606000396000f30060806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631701af271461007257806321e79a6914610089578063257db2d7146100b45780638da5cb5b146100df578063f1ffa5bf14610136575b600080fd5b34801561007e57600080fd5b50610087610163565b005b34801561009557600080fd5b5061009e6101c8565b6040518082815260200191505060405180910390f35b3480156100c057600080fd5b506100c96101d2565b6040518082815260200191505060405180910390f35b3480156100eb57600080fd5b506100f46101d8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561014257600080fd5b50610161600480360381019080803590602001909291905050506101fd565b005b7fbab576340702de78ceeffdb8f4b1ced9d5acd1a3b241ed8c51656fa6ae8b96b233604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a1565b6000600154905090565b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561025857600080fd5b80600181905550505600a165627a7a72305820a7a0b2375a65819098ddd3912641d96d7211b5907b3758e514ce71f7f58b224f0029",
+  "deployedBytecode": "0x60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680631701af271461007257806321e79a6914610089578063257db2d7146100b45780638da5cb5b146100df578063f1ffa5bf14610136575b600080fd5b34801561007e57600080fd5b50610087610163565b005b34801561009557600080fd5b5061009e6101c8565b6040518082815260200191505060405180910390f35b3480156100c057600080fd5b506100c96101d2565b6040518082815260200191505060405180910390f35b3480156100eb57600080fd5b506100f46101d8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561014257600080fd5b50610161600480360381019080803590602001909291905050506101fd565b005b7fbab576340702de78ceeffdb8f4b1ced9d5acd1a3b241ed8c51656fa6ae8b96b233604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a1565b6000600154905090565b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561025857600080fd5b80600181905550505600a165627a7a72305820a7a0b2375a65819098ddd3912641d96d7211b5907b3758e514ce71f7f58b224f0029",
+  "sourceMap": "26:736:0:-;;;265:63;8:9:-1;5:2;;;30:1;27;20:12;5:2;265:63:0;311:10;303:5;;:18;;;;;;;;;;;;;;;;;;26:736;;;;;;",
+  "deployedSourceMap": "26:736:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;334:122;;8:9:-1;5:2;;;30:1;27;20:12;5:2;334:122:0;;;;;;672:88;;8:9:-1;5:2;;;30:1;27;20:12;5:2;672:88:0;;;;;;;;;;;;;;;;;;;;;;;158:24;;8:9:-1;5:2;;;30:1;27;20:12;5:2;158:24:0;;;;;;;;;;;;;;;;;;;;;;;89:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;89:20:0;;;;;;;;;;;;;;;;;;;;;;;;;;;462:204;;8:9:-1;5:2;;;30:1;27;20:12;5:2;462:204:0;;;;;;;;;;;;;;;;;;;;;;;;;;334:122;420:29;438:10;420:29;;;;;;;;;;;;;;;;;;;;;;334:122::o;672:88::-;718:4;741:12;;734:19;;672:88;:::o;158:24::-;;;;:::o;89:20::-;;;;;;;;;;;;;:::o;462:204::-;592:5;;;;;;;;;;;578:19;;:10;:19;;;570:28;;;;;;;;656:3;641:12;:18;;;;462:204;:::o",
+  "source": "pragma solidity ^0.4.17;\n\ncontract CMCOracle {\n    // コントラクトの所有者\n    address public owner;\n\n    // BTCの時価総額、初期値は0\n    uint public btcMarketCap;\n\n    // コールバック関数\n    event CallbackGetBTCCap(address from);\n\n    function CMCOracle() public {\n        owner = msg.sender;\n    }\n\n    function updateBTCCap() public {\n        // Oracleに情報の更新を依頼\n        CallbackGetBTCCap(msg.sender);\n    }\n\n    function setBTCCap(uint cap) public {\n        // メッセージ送信者がownerなのか確認。\n        require(msg.sender == owner);\n        // 時価総額を更新\n        btcMarketCap = cap;\n    }\n\n    function getBTCCap() constant public returns (uint) {\n        return btcMarketCap;\n    }\n}",
   "sourcePath": "/Users/nagataryou/queue/LT/blockchain/contracts/CMCOracle.sol",
   "ast": {
     "absolutePath": "/Users/nagataryou/queue/LT/blockchain/contracts/CMCOracle.sol",
     "exportedSymbols": {
       "CMCOracle": [
-        49
+        53
       ]
     },
-    "id": 50,
+    "id": 54,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -112,9 +118,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 49,
+        "id": 53,
         "linearizedBaseContracts": [
-          49
+          53
         ],
         "name": "CMCOracle",
         "nodeType": "ContractDefinition",
@@ -124,8 +130,8 @@
             "id": 3,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 49,
-            "src": "73:20:0",
+            "scope": 53,
+            "src": "89:20:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -136,7 +142,7 @@
               "id": 2,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "73:7:0",
+              "src": "89:7:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
@@ -150,8 +156,8 @@
             "id": 5,
             "name": "btcMarketCap",
             "nodeType": "VariableDeclaration",
-            "scope": 49,
-            "src": "129:24:0",
+            "scope": 53,
+            "src": "158:24:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -162,7 +168,7 @@
               "id": 4,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "129:4:0",
+              "src": "158:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -174,39 +180,67 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7,
+            "id": 9,
             "name": "CallbackGetBTCCap",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 6,
+              "id": 8,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "208:2:0"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7,
+                  "indexed": false,
+                  "name": "from",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9,
+                  "src": "245:12:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "245:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "244:14:0"
             },
-            "src": "185:26:0"
+            "src": "221:38:0"
           },
           {
             "body": {
-              "id": 15,
+              "id": 17,
               "nodeType": "Block",
-              "src": "245:35:0",
+              "src": "293:35:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 13,
+                    "id": 15,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 10,
+                      "id": 12,
                       "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 3,
-                      "src": "255:5:0",
+                      "src": "303:5:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -218,18 +252,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 11,
+                        "id": 13,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 121,
-                        "src": "263:3:0",
+                        "referencedDeclaration": 68,
+                        "src": "311:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 12,
+                      "id": 14,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -237,26 +271,26 @@
                       "memberName": "sender",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "263:10:0",
+                      "src": "311:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "255:18:0",
+                    "src": "303:18:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 14,
+                  "id": 16,
                   "nodeType": "ExpressionStatement",
-                  "src": "255:18:0"
+                  "src": "303:18:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 16,
+            "id": 18,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -264,48 +298,83 @@
             "name": "CMCOracle",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 8,
+              "id": 10,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "235:2:0"
+              "src": "283:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 9,
+              "id": 11,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "245:0:0"
+              "src": "293:0:0"
             },
-            "scope": 49,
-            "src": "217:63:0",
+            "scope": 53,
+            "src": "265:63:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 22,
+              "id": 26,
               "nodeType": "Block",
-              "src": "317:75:0",
+              "src": "365:91:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "arguments": [],
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 22,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 68,
+                          "src": "438:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 23,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "438:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
                     "expression": {
-                      "argumentTypes": [],
-                      "id": 19,
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 21,
                       "name": "CallbackGetBTCCap",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7,
-                      "src": "366:17:0",
+                      "referencedDeclaration": 9,
+                      "src": "420:17:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_event_nonpayable$__$returns$__$",
-                        "typeString": "function ()"
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
                       }
                     },
-                    "id": 20,
+                    "id": 24,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -313,20 +382,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "366:19:0",
+                    "src": "420:29:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 21,
+                  "id": 25,
                   "nodeType": "ExpressionStatement",
-                  "src": "366:19:0"
+                  "src": "420:29:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 23,
+            "id": 27,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -334,29 +403,29 @@
             "name": "updateBTCCap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 17,
+              "id": 19,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "307:2:0"
+              "src": "355:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 18,
+              "id": 20,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "317:0:0"
+              "src": "365:0:0"
             },
-            "scope": 49,
-            "src": "286:106:0",
+            "scope": 53,
+            "src": "334:122:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 39,
+              "id": 43,
               "nodeType": "Block",
-              "src": "434:159:0",
+              "src": "498:168:0",
               "statements": [
                 {
                   "expression": {
@@ -368,7 +437,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 32,
+                        "id": 36,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -377,18 +446,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 29,
+                            "id": 33,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 121,
-                            "src": "538:3:0",
+                            "referencedDeclaration": 68,
+                            "src": "578:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 30,
+                          "id": 34,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -396,7 +465,7 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "538:10:0",
+                          "src": "578:10:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -406,18 +475,18 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 31,
+                          "id": 35,
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 3,
-                          "src": "552:5:0",
+                          "src": "592:5:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "538:19:0",
+                        "src": "578:19:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -431,21 +500,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 28,
+                      "id": 32,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        124,
-                        125
+                        71,
+                        72
                       ],
-                      "referencedDeclaration": 124,
-                      "src": "530:7:0",
+                      "referencedDeclaration": 71,
+                      "src": "570:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 33,
+                    "id": 37,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -453,32 +522,32 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "530:28:0",
+                    "src": "570:28:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 34,
+                  "id": 38,
                   "nodeType": "ExpressionStatement",
-                  "src": "530:28:0"
+                  "src": "570:28:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 37,
+                    "id": 41,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 35,
+                      "id": 39,
                       "name": "btcMarketCap",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 5,
-                      "src": "568:12:0",
+                      "src": "641:12:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -488,31 +557,31 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 36,
+                      "id": 40,
                       "name": "cap",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 25,
-                      "src": "583:3:0",
+                      "referencedDeclaration": 29,
+                      "src": "656:3:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "568:18:0",
+                    "src": "641:18:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 38,
+                  "id": 42,
                   "nodeType": "ExpressionStatement",
-                  "src": "568:18:0"
+                  "src": "641:18:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 40,
+            "id": 44,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -520,16 +589,16 @@
             "name": "setBTCCap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 26,
+              "id": 30,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 25,
+                  "id": 29,
                   "name": "cap",
                   "nodeType": "VariableDeclaration",
-                  "scope": 40,
-                  "src": "417:8:0",
+                  "scope": 44,
+                  "src": "481:8:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -537,10 +606,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 24,
+                    "id": 28,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "417:4:0",
+                    "src": "481:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -550,50 +619,50 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "416:10:0"
+              "src": "480:10:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 27,
+              "id": 31,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "434:0:0"
+              "src": "498:0:0"
             },
-            "scope": 49,
-            "src": "398:195:0",
+            "scope": 53,
+            "src": "462:204:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 47,
+              "id": 51,
               "nodeType": "Block",
-              "src": "651:36:0",
+              "src": "724:36:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 45,
+                    "id": 49,
                     "name": "btcMarketCap",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 5,
-                    "src": "668:12:0",
+                    "src": "741:12:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 44,
-                  "id": 46,
+                  "functionReturnParameters": 48,
+                  "id": 50,
                   "nodeType": "Return",
-                  "src": "661:19:0"
+                  "src": "734:19:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 48,
+            "id": 52,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -601,23 +670,23 @@
             "name": "getBTCCap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 41,
+              "id": 45,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "617:2:0"
+              "src": "690:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 44,
+              "id": 48,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 43,
+                  "id": 47,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 48,
-                  "src": "645:4:0",
+                  "scope": 52,
+                  "src": "718:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -625,10 +694,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 42,
+                    "id": 46,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "645:4:0",
+                    "src": "718:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -638,29 +707,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "644:6:0"
+              "src": "717:6:0"
             },
-            "scope": 49,
-            "src": "599:88:0",
+            "scope": 53,
+            "src": "672:88:0",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 50,
-        "src": "26:663:0"
+        "scope": 54,
+        "src": "26:736:0"
       }
     ],
-    "src": "0:689:0"
+    "src": "0:762:0"
   },
   "legacyAST": {
     "absolutePath": "/Users/nagataryou/queue/LT/blockchain/contracts/CMCOracle.sol",
     "exportedSymbols": {
       "CMCOracle": [
-        49
+        53
       ]
     },
-    "id": 50,
+    "id": 54,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -680,9 +749,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 49,
+        "id": 53,
         "linearizedBaseContracts": [
-          49
+          53
         ],
         "name": "CMCOracle",
         "nodeType": "ContractDefinition",
@@ -692,8 +761,8 @@
             "id": 3,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 49,
-            "src": "73:20:0",
+            "scope": 53,
+            "src": "89:20:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -704,7 +773,7 @@
               "id": 2,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "73:7:0",
+              "src": "89:7:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
@@ -718,8 +787,8 @@
             "id": 5,
             "name": "btcMarketCap",
             "nodeType": "VariableDeclaration",
-            "scope": 49,
-            "src": "129:24:0",
+            "scope": 53,
+            "src": "158:24:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -730,7 +799,7 @@
               "id": 4,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "129:4:0",
+              "src": "158:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -742,39 +811,67 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 7,
+            "id": 9,
             "name": "CallbackGetBTCCap",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 6,
+              "id": 8,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "208:2:0"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7,
+                  "indexed": false,
+                  "name": "from",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9,
+                  "src": "245:12:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "245:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "244:14:0"
             },
-            "src": "185:26:0"
+            "src": "221:38:0"
           },
           {
             "body": {
-              "id": 15,
+              "id": 17,
               "nodeType": "Block",
-              "src": "245:35:0",
+              "src": "293:35:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 13,
+                    "id": 15,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 10,
+                      "id": 12,
                       "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 3,
-                      "src": "255:5:0",
+                      "src": "303:5:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -786,18 +883,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 11,
+                        "id": 13,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 121,
-                        "src": "263:3:0",
+                        "referencedDeclaration": 68,
+                        "src": "311:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 12,
+                      "id": 14,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -805,26 +902,26 @@
                       "memberName": "sender",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "263:10:0",
+                      "src": "311:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "255:18:0",
+                    "src": "303:18:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 14,
+                  "id": 16,
                   "nodeType": "ExpressionStatement",
-                  "src": "255:18:0"
+                  "src": "303:18:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 16,
+            "id": 18,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -832,48 +929,83 @@
             "name": "CMCOracle",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 8,
+              "id": 10,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "235:2:0"
+              "src": "283:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 9,
+              "id": 11,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "245:0:0"
+              "src": "293:0:0"
             },
-            "scope": 49,
-            "src": "217:63:0",
+            "scope": 53,
+            "src": "265:63:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 22,
+              "id": 26,
               "nodeType": "Block",
-              "src": "317:75:0",
+              "src": "365:91:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "arguments": [],
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 22,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 68,
+                          "src": "438:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 23,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "438:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
                     "expression": {
-                      "argumentTypes": [],
-                      "id": 19,
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 21,
                       "name": "CallbackGetBTCCap",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 7,
-                      "src": "366:17:0",
+                      "referencedDeclaration": 9,
+                      "src": "420:17:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_event_nonpayable$__$returns$__$",
-                        "typeString": "function ()"
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
                       }
                     },
-                    "id": 20,
+                    "id": 24,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -881,20 +1013,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "366:19:0",
+                    "src": "420:29:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 21,
+                  "id": 25,
                   "nodeType": "ExpressionStatement",
-                  "src": "366:19:0"
+                  "src": "420:29:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 23,
+            "id": 27,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -902,29 +1034,29 @@
             "name": "updateBTCCap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 17,
+              "id": 19,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "307:2:0"
+              "src": "355:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 18,
+              "id": 20,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "317:0:0"
+              "src": "365:0:0"
             },
-            "scope": 49,
-            "src": "286:106:0",
+            "scope": 53,
+            "src": "334:122:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 39,
+              "id": 43,
               "nodeType": "Block",
-              "src": "434:159:0",
+              "src": "498:168:0",
               "statements": [
                 {
                   "expression": {
@@ -936,7 +1068,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 32,
+                        "id": 36,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -945,18 +1077,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 29,
+                            "id": 33,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 121,
-                            "src": "538:3:0",
+                            "referencedDeclaration": 68,
+                            "src": "578:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 30,
+                          "id": 34,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -964,7 +1096,7 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "538:10:0",
+                          "src": "578:10:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -974,18 +1106,18 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 31,
+                          "id": 35,
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 3,
-                          "src": "552:5:0",
+                          "src": "592:5:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "538:19:0",
+                        "src": "578:19:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -999,21 +1131,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 28,
+                      "id": 32,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        124,
-                        125
+                        71,
+                        72
                       ],
-                      "referencedDeclaration": 124,
-                      "src": "530:7:0",
+                      "referencedDeclaration": 71,
+                      "src": "570:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 33,
+                    "id": 37,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1021,32 +1153,32 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "530:28:0",
+                    "src": "570:28:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 34,
+                  "id": 38,
                   "nodeType": "ExpressionStatement",
-                  "src": "530:28:0"
+                  "src": "570:28:0"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 37,
+                    "id": 41,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 35,
+                      "id": 39,
                       "name": "btcMarketCap",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 5,
-                      "src": "568:12:0",
+                      "src": "641:12:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1056,31 +1188,31 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 36,
+                      "id": 40,
                       "name": "cap",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 25,
-                      "src": "583:3:0",
+                      "referencedDeclaration": 29,
+                      "src": "656:3:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "568:18:0",
+                    "src": "641:18:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 38,
+                  "id": 42,
                   "nodeType": "ExpressionStatement",
-                  "src": "568:18:0"
+                  "src": "641:18:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 40,
+            "id": 44,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1088,16 +1220,16 @@
             "name": "setBTCCap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 26,
+              "id": 30,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 25,
+                  "id": 29,
                   "name": "cap",
                   "nodeType": "VariableDeclaration",
-                  "scope": 40,
-                  "src": "417:8:0",
+                  "scope": 44,
+                  "src": "481:8:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1105,10 +1237,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 24,
+                    "id": 28,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "417:4:0",
+                    "src": "481:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1118,50 +1250,50 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "416:10:0"
+              "src": "480:10:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 27,
+              "id": 31,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "434:0:0"
+              "src": "498:0:0"
             },
-            "scope": 49,
-            "src": "398:195:0",
+            "scope": 53,
+            "src": "462:204:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 47,
+              "id": 51,
               "nodeType": "Block",
-              "src": "651:36:0",
+              "src": "724:36:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 45,
+                    "id": 49,
                     "name": "btcMarketCap",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 5,
-                    "src": "668:12:0",
+                    "src": "741:12:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 44,
-                  "id": 46,
+                  "functionReturnParameters": 48,
+                  "id": 50,
                   "nodeType": "Return",
-                  "src": "661:19:0"
+                  "src": "734:19:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 48,
+            "id": 52,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -1169,23 +1301,23 @@
             "name": "getBTCCap",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 41,
+              "id": 45,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "617:2:0"
+              "src": "690:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 44,
+              "id": 48,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 43,
+                  "id": 47,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 48,
-                  "src": "645:4:0",
+                  "scope": 52,
+                  "src": "718:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1193,10 +1325,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 42,
+                    "id": 46,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "645:4:0",
+                    "src": "718:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1206,20 +1338,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "644:6:0"
+              "src": "717:6:0"
             },
-            "scope": 49,
-            "src": "599:88:0",
+            "scope": 53,
+            "src": "672:88:0",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 50,
-        "src": "26:663:0"
+        "scope": 54,
+        "src": "26:736:0"
       }
     ],
-    "src": "0:689:0"
+    "src": "0:762:0"
   },
   "compiler": {
     "name": "solc",
@@ -1243,8 +1375,38 @@
       "links": {},
       "address": "0xce99ae2d6b4695e67915097f190d7051777dd611",
       "transactionHash": "0x955b3dc917eb714c7f63795bc4e56e612265f1a24323fcbc84d489fc5bc70109"
+    },
+    "1527661823745": {
+      "events": {},
+      "links": {},
+      "address": "0xf64ee3ebeead2179cff4d5902282705212765e9f",
+      "transactionHash": "0xacd572ca667312cebb3861f7a7a0bd6bc6ceec8fe4ef4891c298a53db8ded559"
+    },
+    "1527662103031": {
+      "events": {},
+      "links": {},
+      "address": "0x6c645e6a87de9d3cad84f5ba33df6e9055588053",
+      "transactionHash": "0xacd572ca667312cebb3861f7a7a0bd6bc6ceec8fe4ef4891c298a53db8ded559"
+    },
+    "1527662154262": {
+      "events": {},
+      "links": {},
+      "address": "0x89fe5b84caf075778cf9b6b77faf9a045b260c26",
+      "transactionHash": "0xacd572ca667312cebb3861f7a7a0bd6bc6ceec8fe4ef4891c298a53db8ded559"
+    },
+    "1527663176343": {
+      "events": {},
+      "links": {},
+      "address": "0x514fa802b31500e15f49eb2e6984d88b3ad9a612",
+      "transactionHash": "0x827aca0dfeb0bee6a20da88dfb7cf3d06b7e89bbafed85ed4c9c0e194c9917e4"
+    },
+    "1527663525809": {
+      "events": {},
+      "links": {},
+      "address": "0xfda5a6910306886a26135cf9cbffa3d111b4c624",
+      "transactionHash": "0x827aca0dfeb0bee6a20da88dfb7cf3d06b7e89bbafed85ed4c9c0e194c9917e4"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-29T17:37:02.425Z"
+  "updatedAt": "2018-05-30T06:58:55.140Z"
 }
