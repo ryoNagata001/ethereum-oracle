@@ -4,8 +4,7 @@ var contract = require('truffle-contract')
 var Web3 = require('web3');
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 
-// Truffle abstraction to interact with our
-// deployed contract
+// Truffleの定義JSONからSmart Contractを取得
 var oracleContract = contract(OracleContract)
 oracleContract.setProvider(web3.currentProvider)
 
@@ -19,20 +18,21 @@ if (typeof oracleContract.currentProvider.sendAsync !== "function") {
   };
 }
 
+// web3 APIを利用して、自分のアカウントを取得
 web3.eth.getAccounts((err, accounts) => {
   oracleContract.deployed()
   .then((oracleInstance) => {
-    // Our promises
+    // プロミス
     const oraclePromises = [
-      oracleInstance.getBTCCap(),  // Get currently stored BTC Cap
-      oracleInstance.updateBTCCap({from: accounts[0]})  // Request oracle to update the information
+      oracleInstance.getBTCCap(),  // 現在のBTCの時価総額を取得
+      oracleInstance.updateBTCCap({from: accounts[0]})  // Oracleに情報の更新を依頼
     ]
 
-    // Map over all promises
+    // プロミスを実行
     Promise.all(oraclePromises)
     .then((result) => {
-      console.log('BTC Market Cap: ' + result[0])
-      console.log('Requesting Oracle to update CMC Information...')
+      console.log('BTC時価総額: ' + result[0])
+      console.log('Oracleに情報の更新を要求しています.....')
     })
     .catch((err) => {
       console.log(err)

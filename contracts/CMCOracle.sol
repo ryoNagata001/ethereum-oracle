@@ -1,13 +1,13 @@
 pragma solidity ^0.4.17;
 
 contract CMCOracle {
-    // Contract owner
+    // コントラクトの所有者
     address public owner;
 
-    // BTC Marketcap Storage
+    // BTCの時価総額、初期値は0
     uint public btcMarketCap;
 
-    // Callback function
+    // コールバック関数
     event CallbackGetBTCCap();
 
     function CMCOracle() public {
@@ -15,14 +15,14 @@ contract CMCOracle {
     }
 
     function updateBTCCap() public {
-        // Calls the callback function
+        // Oracleに情報の更新を依頼
         CallbackGetBTCCap();
     }
 
     function setBTCCap(uint cap) public {
-        // If it isn't sent by a trusted oracle
-        // a.k.a ourselves, ignore it
+        // メッセージ送信者がownerなのか確認。
         require(msg.sender == owner);
+        // 時価総額を更新
         btcMarketCap = cap;
     }
 
